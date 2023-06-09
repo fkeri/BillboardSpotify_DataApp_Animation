@@ -1,4 +1,4 @@
-from dash import Dash, html
+from dash import Dash, dcc, html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
@@ -38,65 +38,70 @@ def render(app: Dash) -> html.Div:
 
     return html.Div(
         children=[
-            dbc.Row(
-                [
-                    # Audio Feature 1 - Radio Group Column
-                    dbc.Col(
-                        html.Div(
-                            [
-                                html.H5(
-                                    "1. Select the first Spotify Audio Feature:",
-                                    className="mb-2",
+            dcc.Loading(
+                type="circle",
+                children=[
+                    dbc.Row(
+                        [
+                            # Audio Feature 1 - Radio Group Column
+                            dbc.Col(
+                                html.Div(
+                                    [
+                                        html.H5(
+                                            "1. Select the first Spotify Audio Feature:",
+                                            className="mb-2",
+                                        ),
+                                        dbc.RadioItems(
+                                            id=ids.DENSITY_HEATMAP_RADIO_1,
+                                            options=list(AUDIO_FEATURES.keys()),
+                                            value="danceability",
+                                            inline=False,
+                                            className="btn-group d-flex justify-content-start mb-2",
+                                            inputClassName="btn-check",
+                                            labelClassName="btn btn-outline-info text-white p-2",
+                                            labelCheckedClassName="active",
+                                        ),
+                                        dbc.Alert(
+                                            id=ids.DENSITY_HEATMAP_RADIO_1_INFO,
+                                            color="info",
+                                            className="m-auto mb-1",
+                                        ),
+                                    ],
+                                    className="radio-group",
                                 ),
-                                dbc.RadioItems(
-                                    id=ids.DENSITY_HEATMAP_RADIO_1,
-                                    options=list(AUDIO_FEATURES.keys()),
-                                    value="danceability",
-                                    inline=False,
-                                    className="btn-group d-flex justify-content-start mb-2",
-                                    inputClassName="btn-check",
-                                    labelClassName="btn btn-outline-info text-white p-2",
-                                    labelCheckedClassName="active",
+                                width=6,
+                            ),
+                            # Audio Feature 2 - Radio Group Column
+                            dbc.Col(
+                                html.Div(
+                                    [
+                                        html.H5(
+                                            "2. Select the second Spotify Audio Feature:",
+                                            className="mb-2",
+                                        ),
+                                        dbc.RadioItems(
+                                            id=ids.DENSITY_HEATMAP_RADIO_2,
+                                            options=list(AUDIO_FEATURES.keys()),
+                                            value="valence",
+                                            inline=False,
+                                            className="btn-group d-flex justify-content-start mb-2",
+                                            inputClassName="btn-check",
+                                            labelClassName="btn btn-outline-info text-white p-2",
+                                            labelCheckedClassName="active",
+                                        ),
+                                        dbc.Alert(
+                                            id=ids.DENSITY_HEATMAP_RADIO_2_INFO,
+                                            color="info",
+                                            className="m-auto mb-4",
+                                        ),
+                                    ],
+                                    className="radio-group",
                                 ),
-                                dbc.Alert(
-                                    id=ids.DENSITY_HEATMAP_RADIO_1_INFO,
-                                    color="info",
-                                    className="m-auto mb-1",
-                                ),
-                            ],
-                            className="radio-group",
-                        ),
-                        width=6,
+                                width=6,
+                            ),
+                        ]
                     ),
-                    # Audio Feature 2 - Radio Group Column
-                    dbc.Col(
-                        html.Div(
-                            [
-                                html.H5(
-                                    "2. Select the second Spotify Audio Feature:",
-                                    className="mb-2",
-                                ),
-                                dbc.RadioItems(
-                                    id=ids.DENSITY_HEATMAP_RADIO_2,
-                                    options=list(AUDIO_FEATURES.keys()),
-                                    value="valence",
-                                    inline=False,
-                                    className="btn-group d-flex justify-content-start mb-2",
-                                    inputClassName="btn-check",
-                                    labelClassName="btn btn-outline-info text-white p-2",
-                                    labelCheckedClassName="active",
-                                ),
-                                dbc.Alert(
-                                    id=ids.DENSITY_HEATMAP_RADIO_2_INFO,
-                                    color="info",
-                                    className="m-auto mb-4",
-                                ),
-                            ],
-                            className="radio-group",
-                        ),
-                        width=6,
-                    ),
-                ]
-            ),
-        ],
+                ],
+            )
+        ]
     )

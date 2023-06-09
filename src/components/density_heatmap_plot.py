@@ -207,7 +207,14 @@ def render(
             data_animation,
         )
         return html.Div(
-            dcc.Graph(figure=animated_fig, style={"margin": "auto"}),
+            children=[
+                dcc.Loading(
+                    type='circle',
+                    children=[
+                        dcc.Graph(figure=animated_fig, style={"margin": "auto"}),
+                    ]
+                )
+            ],
             id="graph_0",
             className="mt-2",
         )
