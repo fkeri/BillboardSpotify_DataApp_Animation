@@ -11,7 +11,7 @@ import os
 processed_dir = "data/processed"
 
 ANIMATION_FRAMES_PATH = os.path.join(
-    processed_dir, "billboardAnimationFramesDecade.json."
+    processed_dir, "billboardAnimationFramesDecade.json"
 )
 BILLBOARD_WEEKS_PATH = os.path.join(
     processed_dir, 'unique_billboard_weeks.npy'
